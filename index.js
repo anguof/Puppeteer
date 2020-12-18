@@ -8,6 +8,7 @@ const ITEM_LIST = ".item";
 const MOVE_NAME = ".hd>a:first-child";
 const MOVE_SCORE = ".rating_num";
 
+// 连接数据库
 const DB_URL = "mongodb://localhost/movie";
 if (mongoose.connection.readyState == 0) {
   mongoose.connect(
@@ -48,9 +49,9 @@ async function run() {
     });
 
     const itemUsers = await page.evaluate(
-      (sel, moveName, moveScore) => {
+      (item, moveName, moveScore) => {
         return Array.prototype.slice
-          .apply(document.querySelectorAll(sel))
+          .apply(document.querySelectorAll(item))
           .map(($userListItem) => {
             const name = $userListItem
               .querySelector(moveName)
@@ -69,6 +70,7 @@ async function run() {
     );
     users = [...users, ...itemUsers];
   }
+
   for (let i = 0, length = users.length; i < length; i++) {
     upsertMovie({
       name: users[i]["name"],
