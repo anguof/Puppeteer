@@ -1,5 +1,4 @@
 const puppeteer = require("puppeteer");
-// const CREDS = require("./creds"); // 登录用
 const fs = require("fs");
 
 const ITEM_LIST = ".item";
@@ -57,6 +56,8 @@ async function run() {
       if (err) throw err;
     }
   );
+
+  await browser.close();
 }
 
 run();

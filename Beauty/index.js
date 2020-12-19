@@ -37,8 +37,10 @@ async function run() {
     );
 
     users = [...users, ...itemUsers];
+    console.log(users);
   }
 
+  await browser.close();
 }
 
 run();
