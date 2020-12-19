@@ -12,10 +12,10 @@ async function run() {
   const page = await browser.newPage();
 
   let users = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < 16; i++) {
     // 跳转到指定页码
     await page.goto(
-      `https://movie.douban.com/celebrity/1014295/photos/?type=C&start=${
+      `https://movie.douban.com/celebrity/1314998/photos/?type=C&start=${
         i * 30
       }&sortby=like&size=a&subtype=a`,
       {
@@ -47,9 +47,9 @@ async function run() {
   }
 
   for (let i = 0, length = users.length; i < length; i++) {
-    const viewSource = await page.goto(users[i]["name"]);
+    const viewSource = await page.goto(users[i]["name"].replace(/webp/, "jpg"));
     fs.writeFile(
-      `./public/No${i + 1}.webp`,
+      `./public/No${i + 1}.jpg`,
       await viewSource.buffer(),
       function (err) {
         if (err) {
