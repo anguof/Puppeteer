@@ -1,4 +1,0 @@
-1、事件冒泡和事件捕获：事件流（事件发生顺序问题）--> event bubbling、event capturing
-   事件代理：利用事件冒泡、找到e
-   currentTarget 指向事件绑定的元素。
-   target 事件触发的元素，点击的深层子节点。
